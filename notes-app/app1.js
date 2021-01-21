@@ -19,7 +19,6 @@ const notefile=require("./notes1.js")
     },
     handler(){
       notefile.addnotes(argv.title,argv.body)
-      console.log(argv.title,argv.body)
     }
   })
   yargs.parse()
