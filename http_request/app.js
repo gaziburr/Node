@@ -3,17 +3,18 @@ const chalk = require('chalk')
 
 const api = function(lat, lon, address) {
   //const url1 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=17f1dd0283743f2faf1cf56dbc16623e"
-  const url = "http://api.weatherapi.com/v1/current.json?key=cbcc766178934c26b99161428212401&q=" + encodeURIComponent(address)
-  const data = request({ url: url, json: true }, (error, response) => {
+  const url2 = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+encodeURIComponent(address)+".json?access_token=pk.eyJ1IjoiZ2F6aWJ1cjEyMyIsImEiOiJja2p0enlmbnc0NDIxMnpxb2VvYmNqbmZ5In0.0VpwHbnS4bcUz1Fgh21z6A"
+  const data = request({ url: url2, json: true }, (error, response) => {
     if (error) {
       console.log("unable to connect whether services")
     } else if (response.body.error) {
       console.log('Unable to find the location')
     }
     else {
-      const current = response.body
+      const fetch = response.body.features[0]
       //const weather = (`The place name is ${current.location.name} ,the region name is ${current.location.region} ,The longitude of this place is ${current.location.lon} , the lattitude is  ${current.location.lat} and localtime in hear is ${current.location.localtime} `)
-      console.log(current)
+      console.log(fetch)
+     // console.log(current.lat,current.lon)
     }
   })
 }
@@ -35,3 +36,12 @@ api(undefined, undefined, "nagaon")
 //  }
 
 // })
+
+
+
+
+
+
+
+
+
